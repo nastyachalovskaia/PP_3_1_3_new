@@ -65,6 +65,7 @@
                       <th>Age</th>
                       <th>Email</th>
                       <th>Roles</th>
+                      <th>Edit</th>
                       <th>Delete</th>
                     </tr>
 
@@ -98,7 +99,8 @@
                                     aria-label="Close"></button>
                           </div>
 
-<form th:method="PATCH" th:action="@{/admin/users/{id}(id=${user.getId()})/edit}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/admin/users/{id}(id=${user.getId()})/edit}"
+      th:object="${user}">
   <div class="modal-body col-md text-center">
     <br>
 

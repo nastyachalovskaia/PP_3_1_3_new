@@ -1,6 +1,7 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +33,10 @@ public class UserController {
     }
 
     @GetMapping("/admin/users")
-    public String getAllUsers(Model model) {
+    public String getAllUsers(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("user", userService.getUserByLogin(user.getLogin()));
+        model.addAttribute("role", roleService.getAllRoles());
         return "index";
     }
 
