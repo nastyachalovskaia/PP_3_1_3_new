@@ -36,7 +36,7 @@ public class UserController {
     public String getAllUsers(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("user", userService.getUserByLogin(user.getLogin()));
-        model.addAttribute("role", roleService.getAllRoles());
+        model.addAttribute("allRoles", roleService.getAllRoles());
         return "index";
     }
 
@@ -54,8 +54,9 @@ public class UserController {
     }
 
     @GetMapping("/admin/users/addNewUser")
-    public String newUser(@ModelAttribute("user") User user, Model model) {
+    public String newUser(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("allRoles", roleService.getAllRoles());
+        model.addAttribute("user", userService.getUserByLogin(user.getLogin()));
         return "new";
     }
 
@@ -69,18 +70,18 @@ public class UserController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/admin/users/{id}/edit")
-    public String editUser(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.getUserById(id));
-        model.addAttribute("allRoles", roleService.getAllRoles());
-        return "edit";
-    }
+//    @GetMapping("/admin/users/{id}/edit")
+//    public String editUser(Model model, @PathVariable("id") Long id) {
+//        model.addAttribute("user", userService.getUserById(id));
+//        model.addAttribute("allRoles", roleService.getAllRoles());
+//        return "edit";
+//    }
 
     @PatchMapping("/admin/users/{id}/edit")
     public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("allRoles", roleService.getAllRoles());
-            return "edit";
+            return "index";
         }
         userService.updateUser(user);
         return "redirect:/admin/users";
