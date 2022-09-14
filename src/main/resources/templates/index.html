@@ -30,10 +30,10 @@
         <div class="col-2" style="padding: 15px 0 0;">
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#adminPanel">Admin</a>
+                    <a class="nav-link active" data-toggle="tab" th:href="@{/admin/users}">Admin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#userPanel">User</a>
+                    <a class="nav-link" data-toggle="tab" th:href="@{/admin/users/{id}(id=${user.getId()})}">User</a>
                 </li>
             </ul>
         </div>
@@ -107,7 +107,7 @@
                                                                 <label for="id"><b>ID</b></label>
                                                                 <input th:name="id" th:type="text"
                                                                        class="form-control" id="id"
-                                                                       th:value="${user.getId()}" disabled/>
+                                                                       th:value="${user.id}" disabled/>
                                                                 <br>
                                                                 <label for="name"><b>Name</b></label>
                                                                 <input th:name="name" th:type="text"
