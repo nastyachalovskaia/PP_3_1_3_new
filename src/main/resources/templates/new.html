@@ -15,7 +15,7 @@
         <p class="navbar-brand text-white">
             <b><span class="align-middle" th:text="${user.getLogin()}"></span></b>
             <span class="align-middle">with roles:</span>
-            <span class="align-middle" th:text="${user.getRoles()}"></span>
+            <span class="align-middle" th:text="${#strings.replace(user.getRoles(), 'ROLE_','').replaceAll('[\[\],]','')}"></span>
         </p>
         <form th:method="GET" th:action="@{/logout}">
             <button type="submit" class="btn btn-dark text-secondary">Logout</button>

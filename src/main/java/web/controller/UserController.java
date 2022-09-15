@@ -77,7 +77,7 @@ public class UserController {
 //        return "edit";
 //    }
 
-    @PatchMapping("/admin/users/{id}/edit")
+    @PatchMapping("/admin/users/{id}")
     public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("allRoles", roleService.getAllRoles());
