@@ -70,13 +70,6 @@ public class UserController {
         return "redirect:/admin/users";
     }
 
-//    @GetMapping("/admin/users/{id}/edit")
-//    public String editUser(Model model, @PathVariable("id") Long id) {
-//        model.addAttribute("user", userService.getUserById(id));
-//        model.addAttribute("allRoles", roleService.getAllRoles());
-//        return "edit";
-//    }
-
     @PatchMapping("/admin/users/{id}")
     public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
